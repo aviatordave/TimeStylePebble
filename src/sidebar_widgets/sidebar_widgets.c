@@ -177,12 +177,23 @@ void SidebarWidgets_updateTime(struct tm* timeInfo, struct tm* timeInfoUTC) {
   // set the seconds string
   strftime(currentSecondsNum, 4, ":%S", timeInfo);
 
+  // set the alternate time zone string
+  int hour = timeInfo->tm_hour;
 
+  
+  //check to see if it should use UTC time or a specificed offset from local time
+  if(globalSettings.altclockOffset==0) {
+   //Use UTC instead of an offset
+    hour = timeInfoUTC->tm_hour;
+}
+else {
+   // apply the configured offset value
+     hour += globalSettings.altclockOffset;
+}
+  
   // set the alternate time zone string
   //int hour = timeInfo->tm_hour;
   
-  //For UTC time no matter what the settings say
-  int hour = timeInfoUTC->tm_hour;
 
   // apply the configured offset value
   //hour += globalSettings.altclockOffset;
