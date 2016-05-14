@@ -5,4 +5,4 @@
 void Sidebar_init(Window* window);
 void Sidebar_deinit();
 void Sidebar_redraw();
-void Sidebar_updateTime(struct tm* timeInfo);
+void Sidebar_updateTime(struct tm* timeInfo, struct tm* timeInfoUTC);

@@ -88,8 +88,8 @@ void Sidebar_redraw() {
   #endif
 }
 
-void Sidebar_updateTime(struct tm* timeInfo) {
-  SidebarWidgets_updateTime(timeInfo);
+void Sidebar_updateTime(struct tm* timeInfo, struct tm* timeInfoUTC) {
+  SidebarWidgets_updateTime(timeInfo, timeInfoUTC);
 
   // redraw the sidebar in case it changed in any way
   Sidebar_redraw();

@@ -50,4 +50,4 @@ void SidebarWidgets_init();
 void SidebarWidgets_deinit();
 SidebarWidget getSidebarWidgetByType(SidebarWidgetType type);
 void SidebarWidgets_updateFonts();
-void SidebarWidgets_updateTime(struct tm* timeInfo);
+void SidebarWidgets_updateTime(struct tm* timeInfo, struct tm* timeInfoUTC);

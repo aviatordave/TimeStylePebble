@@ -167,7 +167,7 @@ int mod(int a, int b) {
     return r < 0 ? r + b : r;
 }
 
-void SidebarWidgets_updateTime(struct tm* timeInfo) {
+void SidebarWidgets_updateTime(struct tm* timeInfo, struct tm* timeInfoUTC) {
   printf("Current RAM: %d", heap_bytes_free());
 
   // set all the date strings
@@ -179,10 +179,13 @@ void SidebarWidgets_updateTime(struct tm* timeInfo) {
 
 
   // set the alternate time zone string
-  int hour = timeInfo->tm_hour;
+  //int hour = timeInfo->tm_hour;
+  
+  //For UTC time no matter what the settings say
+  int hour = timeInfoUTC->tm_hour;
 
   // apply the configured offset value
-  hour += globalSettings.altclockOffset;
+  //hour += globalSettings.altclockOffset;
 
   char am_pm = (mod(hour, 24) < 12) ? 'a' : 'p';
 

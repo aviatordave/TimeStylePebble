@@ -30,9 +30,11 @@ void bluetoothStateChanged(bool newConnectionState);
 void update_clock() {
   time_t rawTime;
   struct tm* timeInfo;
+  struct tm* timeInfoUTC; //Add UTC Time
 
   time(&rawTime);
   timeInfo = localtime(&rawTime);
+  timeInfoUTC = gmtime(&rawTime);
 
   // DEBUG: use fake time for screenshots
   // timeInfo->tm_hour = 6;
@@ -80,7 +82,7 @@ void update_clock() {
   ClockDigit_setNumber(&clockDigits[2], timeInfo->tm_min  / 10, current_font);
   ClockDigit_setNumber(&clockDigits[3], timeInfo->tm_min  % 10, current_font);
 
-  Sidebar_updateTime(timeInfo);
+  Sidebar_updateTime(timeInfo, timeInfoUTC);
 }
 
 /* forces everything on screen to be redrawn -- perfect for keeping track of settings! */
