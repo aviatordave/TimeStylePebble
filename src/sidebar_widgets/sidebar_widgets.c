@@ -204,7 +204,12 @@ else {
   if(clock_is_24h_style()) {
     hour = mod(hour, 24);
     am_pm = (char) 0;
-  } else {
+  } 
+  else if (globalSettings.altclockOffset==0) { //Force 24 hour clock if time is set to UTC
+    hour = mod(hour, 24);
+    am_pm = (char) 0;
+
+} else {
     hour = mod(hour, 12);
     if(hour == 0) {
       hour = 12;
@@ -213,6 +218,13 @@ else {
 
   if(globalSettings.showLeadingZero && hour < 10) {
     snprintf(altClock, sizeof(altClock), "0%i%c", hour, am_pm);
+  }else if (globalSettings.altclockOffset==0) { //Force leading zero if clock is set to UTC
+    if(hour < 10) {
+      snprintf(altClock, sizeof(altClock), "0%i%c", hour, am_pm);
+      }else {
+        snprintf(altClock, sizeof(altClock), "%i%c", hour, am_pm);
+    
+    }
   } else {
     snprintf(altClock, sizeof(altClock), "%i%c", hour, am_pm);
   }
